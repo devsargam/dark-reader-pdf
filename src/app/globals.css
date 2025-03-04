@@ -3,6 +3,19 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #0066cc;
+  --primary-foreground: #ffffff;
+  --secondary: #f2f2f2;
+  --secondary-foreground: #171717;
+  --accent: #f8f9fa;
+  --accent-foreground: #171717;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --muted: #f2f2f2;
+  --muted-foreground: #737373;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #0066cc;
 }
 
 @theme inline {
@@ -16,11 +29,65 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: #1a1a1a;
+    --secondary-foreground: #ededed;
+    --accent: #1a1a1a;
+    --accent-foreground: #ededed;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --muted: #1a1a1a;
+    --muted-foreground: #a3a3a3;
+    --border: #262626;
+    --input: #262626;
+    --ring: #3b82f6;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* PDF Viewer Styles */
+.pdf-container {
+  position: relative;
+  background-color: #1a1a1a;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.pdf-container object {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Custom scrollbar for the PDF container */
+.pdf-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.pdf-container::-webkit-scrollbar-track {
+  background: #262626;
+  border-radius: 4px;
+}
+
+.pdf-container::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 4px;
+}
+
+.pdf-container::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .pdf-container {
+    max-height: 70vh;
+  }
 }
