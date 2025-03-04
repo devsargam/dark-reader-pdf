@@ -1,66 +1,87 @@
 # Dark Mode PDF Reader
 
-A Next.js application that allows users to upload PDF files and view them with inverted colors - dark background with white text for better readability in low light conditions.
+A modern web application for reading PDF files with dark mode support. This application allows you to read PDFs with inverted colors for better readability in low light conditions.
 
 ## Features
 
-- Upload PDF files via drag-and-drop or file browser
-- View PDFs with inverted colors (dark background, white text)
-- Navigate between pages
-- Zoom in and out
-- Responsive design for all device sizes
+- **Dark Mode PDF Viewing**: Automatically inverts PDF colors for better readability in low light conditions
+- **Zen Mode**: Distraction-free reading experience with fullscreen mode
+- **Keyboard Shortcuts**: Convenient keyboard shortcuts for common actions
+- **Drag & Drop**: Easy file uploading with drag and drop support
+- **Responsive Design**: Works on desktop and mobile devices
+- **Modern UI**: Clean and intuitive user interface
 
-## Technologies Used
+## Keyboard Shortcuts
 
-- Next.js 15
-- React 19
-- TypeScript
-- Tailwind CSS
-- react-pdf for PDF rendering
-- pdf-lib for PDF manipulation
-- Radix UI for accessible components
+- **Z**: Toggle Zen Mode
+- **F**: Toggle Fullscreen
+- **D**: Toggle Dark Mode
+- **H**: Hide/Show Controls in Zen Mode
+- **Escape**: Exit Zen Mode / Fullscreen
+- **Double-click**: Toggle Controls in Zen Mode
+
+## Tech Stack
+
+- **Next.js**: React framework for server-rendered applications
+- **TypeScript**: Type-safe JavaScript
+- **Tailwind CSS**: Utility-first CSS framework
+- **Shadcn UI**: Reusable UI components
+- **Lucide Icons**: Beautiful SVG icons
+
+## Project Structure
+
+The project follows a feature-based folder structure for better organization:
+
+```
+src/
+├── app/                  # Next.js app router
+├── components/           # Shared UI components
+│   └── ui/               # Shadcn UI components
+├── features/             # Feature-based modules
+│   └── pdf-reader/       # PDF reader feature
+│       ├── components/   # PDF reader components
+│       ├── hooks/        # Custom hooks
+│       ├── utils/        # Utility functions
+│       └── types/        # TypeScript types
+└── lib/                  # Shared utilities and helpers
+```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18.0 or later
+- Node.js 18+
 - npm or pnpm
 
 ### Installation
 
-1. Clone the repository:
+1. Clone the repository
 
 ```bash
 git clone https://github.com/yourusername/dark-reader.git
 cd dark-reader
 ```
 
-2. Install dependencies:
+2. Install dependencies
 
 ```bash
-npm install
-# or
 pnpm install
 ```
 
-3. Run the development server:
+3. Run the development server
 
 ```bash
-npm run dev
-# or
 pnpm dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Usage
+## Building for Production
 
-1. Upload a PDF file by dragging and dropping it onto the upload area or by clicking the upload area to browse for a file.
-2. Once uploaded, the PDF will be displayed with inverted colors.
-3. Use the navigation buttons to move between pages.
-4. Use the zoom buttons to adjust the size of the PDF.
+```bash
+pnpm build
+```
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT

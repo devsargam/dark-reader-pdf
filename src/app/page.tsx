@@ -1,4 +1,4 @@
-import { PdfReader } from "@/components/pdf-reader";
+import { PdfReader } from "@/features/pdf-reader";
 
 export default function Home() {
   return (
