@@ -2,11 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Maximize2, Minimize2, Moon, Sun, Eye, EyeOff } from "lucide-react";
-
-interface PdfViewerProps {
-  file: File | null;
-  onZenModeChange?: (zenMode: boolean) => void;
-}
+import type { PdfViewerProps } from "../types";
 
 export function PdfViewer({ file, onZenModeChange }: PdfViewerProps) {
   const [fileUrl, setFileUrl] = useState<string | null>(null);

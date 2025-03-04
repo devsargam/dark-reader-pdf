@@ -17,17 +17,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { PdfUploader } from "./PdfUploader";
-
-interface PdfReaderLayoutProps {
-  selectedFile: File | null;
-  isZenMode: boolean;
-  onFileSelect: (file: File) => void;
-  onDownload: () => void;
-  onOpenShortcutsDialog: () => void;
-  isDialogOpen: boolean;
-  setIsDialogOpen: (isOpen: boolean) => void;
-  children: React.ReactNode;
-}
+import type { PdfReaderLayoutProps } from "../types";
 
 export function PdfReaderLayout({
   selectedFile,

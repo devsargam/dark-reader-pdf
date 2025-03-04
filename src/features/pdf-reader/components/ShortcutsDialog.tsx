@@ -7,11 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
-interface ShortcutsDialogProps {
-  isOpen: boolean;
-  onOpenChange: (isOpen: boolean) => void;
-}
+import type { ShortcutsDialogProps } from "../types";
 
 export function ShortcutsDialog({
   isOpen,

@@ -3,10 +3,7 @@
 import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Upload, FileText } from "lucide-react";
-
-interface PdfUploaderProps {
-  onFileSelect: (file: File) => void;
-}
+import type { PdfUploaderProps } from "../types";
 
 export function PdfUploader({ onFileSelect }: PdfUploaderProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
