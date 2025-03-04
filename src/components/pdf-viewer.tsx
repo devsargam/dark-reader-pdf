@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { ZoomIn, ZoomOut } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { Maximize2, Minimize2, Moon, Sun } from "lucide-react";
 
 interface PdfViewerProps {
   file: File | null;
@@ -10,7 +9,9 @@ interface PdfViewerProps {
 
 export function PdfViewer({ file }: PdfViewerProps) {
   const [fileUrl, setFileUrl] = useState<string | null>(null);
-  const [scale, setScale] = useState<number>(1.0);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (file) {
@@ -20,56 +21,81 @@ export function PdfViewer({ file }: PdfViewerProps) {
     }
   }, [file]);
 
-  function zoomIn() {
-    setScale((prevScale) => Math.min(prevScale + 0.2, 3));
-  }
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      containerRef.current?.requestFullscreen().catch((err) => {
+        console.error(
+          `Error attempting to enable full-screen mode: ${err.message}`
+        );
+      });
+      setIsFullScreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullScreen(false);
+    }
+  };
 
-  function zoomOut() {
-    setScale((prevScale) => Math.max(prevScale - 0.2, 0.5));
-  }
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  useEffect(() => {
+    const handleFullScreenChange = () => {
+      setIsFullScreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullScreenChange);
+    return () =>
+      document.removeEventListener("fullscreenchange", handleFullScreenChange);
+  }, []);
 
   if (!fileUrl) {
-    return <div className="text-center p-8">No PDF file selected</div>;
+    return (
+      <div className="text-center p-4 text-gray-500">No PDF file selected</div>
+    );
   }
 
   return (
-    <div className="flex flex-col items-center h-full">
-      <div className="flex justify-center mb-4 space-x-2">
-        <Button variant="outline" size="sm" onClick={zoomOut}>
-          <ZoomOut className="h-4 w-4 mr-1" />
-          Zoom Out
-        </Button>
-        <Button variant="outline" size="sm" onClick={zoomIn}>
-          <ZoomIn className="h-4 w-4 mr-1" />
-          Zoom In
-        </Button>
-      </div>
-
-      <div className="pdf-container bg-[#1a1a1a] p-4 rounded-lg shadow-lg overflow-auto w-full h-[calc(100vh-150px)] flex-grow">
-        <div
-          className="relative w-full h-full"
-          style={{
-            transform: `scale(${scale})`,
-            transformOrigin: "top center",
-            transition: "transform 0.2s ease",
-          }}
+    <div
+      ref={containerRef}
+      className={`h-screen w-full relative ${
+        isDarkMode ? "bg-[#1a1a1a]" : "bg-white"
+      }`}
+    >
+      <div className="absolute top-2 right-2 z-10 flex space-x-2">
+        <button
+          onClick={toggleDarkMode}
+          className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
+          aria-label={isDarkMode ? "Light mode" : "Dark mode"}
         >
-          <object
-            data={fileUrl}
-            type="application/pdf"
-            className="w-full h-full"
-            style={{
-              filter: "invert(1) hue-rotate(180deg)",
-              backgroundColor: "#1a1a1a",
-            }}
-          >
-            <div className="text-center p-4 text-red-500">
-              Your browser does not support PDF viewing. Please download the
-              file to view it.
-            </div>
-          </object>
-        </div>
+          {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+        <button
+          onClick={toggleFullScreen}
+          className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
+          aria-label={isFullScreen ? "Exit full screen" : "Enter full screen"}
+        >
+          {isFullScreen ? <Minimize2 size={20} /> : <Maximize2 size={20} />}
+        </button>
       </div>
+      <object
+        data={fileUrl}
+        type="application/pdf"
+        className="w-full h-full"
+        style={
+          isDarkMode
+            ? {
+                filter: "invert(1) hue-rotate(180deg)",
+                backgroundColor: "#1a1a1a",
+              }
+            : undefined
+        }
+      >
+        <div className="text-center p-4 text-red-500">
+          Your browser does not support PDF viewing. Please download the file to
+          view it.
+        </div>
+      </object>
     </div>
   );
 }
