@@ -2,34 +2,11 @@
 
 @layer theme {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
+    --background: 0 0% 0%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 0 0% 5%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 0 0% 5%;
     --popover-foreground: 0 0% 98%;
     --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
@@ -44,6 +21,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
+    --radius: 0.5rem;
   }
 }
 
@@ -52,8 +30,8 @@
     border-color: oklch(var(--border));
   }
   body {
-    background-color: oklch(var(--background));
-    color: oklch(var(--foreground));
+    background-color: #000000;
+    color: #ffffff;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
@@ -61,7 +39,7 @@
 /* PDF Viewer Styles */
 .pdf-container {
   position: relative;
-  background-color: oklch(var(--card));
+  background-color: #111111;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -80,17 +58,17 @@
 }
 
 .pdf-container::-webkit-scrollbar-track {
-  background: oklch(var(--muted));
+  background: #333333;
   border-radius: 4px;
 }
 
 .pdf-container::-webkit-scrollbar-thumb {
-  background: color-mix(in oklch, oklch(var(--muted-foreground)) 50%, transparent);
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
 }
 
 .pdf-container::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in oklch, oklch(var(--muted-foreground)) 70%, transparent);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 /* Zen Mode Styles */
