@@ -85,6 +85,64 @@ body {
   background: #5a5a5a;
 }
 
+/* Zen Mode Styles */
+.zen-mode {
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.zen-mode object {
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.zen-mode #pdf-controls {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.zen-mode #pdf-controls:hover,
+.zen-mode #pdf-controls.opacity-100 {
+  opacity: 1;
+}
+
+.zen-mode button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.zen-mode button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Fade in/out animation for controls */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease-in-out forwards;
+}
+
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .pdf-container {
