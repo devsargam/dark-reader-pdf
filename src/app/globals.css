@@ -1,7 +1,6 @@
-@import "tailwindcss/preflight";
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
+@layer theme {
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
@@ -50,10 +49,11 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: oklch(var(--border));
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: oklch(var(--background));
+    color: oklch(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
@@ -61,7 +61,7 @@
 /* PDF Viewer Styles */
 .pdf-container {
   position: relative;
-  background-color: hsl(var(--card));
+  background-color: oklch(var(--card));
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -80,17 +80,17 @@
 }
 
 .pdf-container::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
+  background: oklch(var(--muted));
   border-radius: 4px;
 }
 
 .pdf-container::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground) / 0.5);
+  background: color-mix(in oklch, oklch(var(--muted-foreground)) 50%, transparent);
   border-radius: 4px;
 }
 
 .pdf-container::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground) / 0.7);
+  background: color-mix(in oklch, oklch(var(--muted-foreground)) 70%, transparent);
 }
 
 /* Zen Mode Styles */

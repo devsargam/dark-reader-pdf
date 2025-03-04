@@ -30,9 +30,7 @@ export function PdfReaderLayout({
   children,
 }: PdfReaderLayoutProps) {
   return (
-    <div
-      className={`min-h-screen bg-background ${isZenMode ? "zen-mode" : ""}`}
-    >
+    <div className={`min-h-screen ${isZenMode ? "zen-mode" : "bg-background"}`}>
       {!isZenMode && (
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col items-center mb-8">
@@ -47,7 +45,7 @@ export function PdfReaderLayout({
           </div>
 
           {!selectedFile ? (
-            <div className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-border rounded-lg bg-card/50">
+            <div className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-[oklch(var(--border))] rounded-lg bg-card/50">
               <PdfUploader onFileSelect={onFileSelect} />
             </div>
           ) : (

@@ -13,55 +13,38 @@ export function ShortcutsDialog({
   isOpen,
   onOpenChange,
 }: ShortcutsDialogProps) {
+  const shortcuts = [
+    { key: "Space", description: "Toggle zen mode" },
+    { key: "ArrowRight", description: "Next page" },
+    { key: "ArrowLeft", description: "Previous page" },
+    { key: "ArrowUp", description: "Scroll up" },
+    { key: "ArrowDown", description: "Scroll down" },
+    { key: "+", description: "Zoom in" },
+    { key: "-", description: "Zoom out" },
+    { key: "0", description: "Reset zoom" },
+    { key: "Esc", description: "Exit zen mode" },
+  ];
+
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-primary">
-            Keyboard Shortcuts
-          </DialogTitle>
+          <DialogTitle>Keyboard Shortcuts</DialogTitle>
         </DialogHeader>
-        <div className="space-y-4 py-4">
-          <div className="grid grid-cols-2 gap-x-4 gap-y-3">
-            <div className="font-medium text-foreground bg-muted px-2 py-1 rounded text-center">
-              Z
+        <div className="grid grid-cols-2 gap-4 py-4">
+          {shortcuts.map((shortcut) => (
+            <div
+              key={shortcut.key}
+              className="flex items-center justify-between"
+            >
+              <span className="text-sm text-muted-foreground">
+                {shortcut.description}
+              </span>
+              <kbd className="px-2 py-1 text-xs font-semibold text-foreground bg-muted rounded border border-[oklch(var(--border))]">
+                {shortcut.key}
+              </kbd>
             </div>
-            <div className="text-foreground">Toggle Zen Mode</div>
-
-            <div className="font-medium text-foreground bg-muted px-2 py-1 rounded text-center">
-              F
-            </div>
-            <div className="text-foreground">Toggle Fullscreen</div>
-
-            <div className="font-medium text-foreground bg-muted px-2 py-1 rounded text-center">
-              D
-            </div>
-            <div className="text-foreground">Toggle Dark Mode</div>
-
-            <div className="font-medium text-foreground bg-muted px-2 py-1 rounded text-center">
-              H
-            </div>
-            <div className="text-foreground">
-              Hide/Show Controls in Zen Mode
-            </div>
-
-            <div className="font-medium text-foreground bg-muted px-2 py-1 rounded text-center">
-              Escape
-            </div>
-            <div className="text-foreground">Exit Zen Mode / Fullscreen</div>
-
-            <div className="font-medium text-foreground bg-muted px-2 py-1 rounded text-center">
-              Double-click
-            </div>
-            <div className="text-foreground">Toggle Controls in Zen Mode</div>
-          </div>
-
-          <div className="pt-2 text-sm text-muted-foreground bg-card p-3 rounded-lg border border-border mt-4">
-            <p>
-              In Zen Mode, move your mouse to temporarily show controls, or
-              double-click to toggle controls visibility.
-            </p>
-          </div>
+          ))}
         </div>
       </DialogContent>
     </Dialog>
