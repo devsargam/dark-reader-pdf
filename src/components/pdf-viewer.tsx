@@ -33,7 +33,7 @@ export function PdfViewer({ file }: PdfViewerProps) {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center h-full">
       <div className="flex justify-center mb-4 space-x-2">
         <Button variant="outline" size="sm" onClick={zoomOut}>
           <ZoomOut className="h-4 w-4 mr-1" />
@@ -45,9 +45,9 @@ export function PdfViewer({ file }: PdfViewerProps) {
         </Button>
       </div>
 
-      <div className="pdf-container bg-[#1a1a1a] p-4 rounded-lg shadow-lg overflow-auto max-h-[80vh] w-full">
+      <div className="pdf-container bg-[#1a1a1a] p-4 rounded-lg shadow-lg overflow-auto w-full h-[calc(100vh-150px)] flex-grow">
         <div
-          className="relative w-full"
+          className="relative w-full h-full"
           style={{
             transform: `scale(${scale})`,
             transformOrigin: "top center",
@@ -57,7 +57,7 @@ export function PdfViewer({ file }: PdfViewerProps) {
           <object
             data={fileUrl}
             type="application/pdf"
-            className="w-full h-[70vh]"
+            className="w-full h-full"
             style={{
               filter: "invert(1) hue-rotate(180deg)",
               backgroundColor: "#1a1a1a",
