@@ -56,12 +56,7 @@ export function PdfViewer({ file }: PdfViewerProps) {
   }
 
   return (
-    <div
-      ref={containerRef}
-      className={`h-screen w-full relative ${
-        isDarkMode ? "bg-[#1a1a1a]" : "bg-white"
-      }`}
-    >
+    <div ref={containerRef} className="h-screen w-full relative">
       <div className="absolute top-2 right-2 z-10 flex space-x-2">
         <button
           onClick={toggleDarkMode}
@@ -78,18 +73,15 @@ export function PdfViewer({ file }: PdfViewerProps) {
           {isFullScreen ? <Minimize2 size={20} /> : <Maximize2 size={20} />}
         </button>
       </div>
+
       <object
         data={fileUrl}
         type="application/pdf"
         className="w-full h-full"
-        style={
-          isDarkMode
-            ? {
-                filter: "invert(1) hue-rotate(180deg)",
-                backgroundColor: "#1a1a1a",
-              }
-            : undefined
-        }
+        style={{
+          backgroundColor: isDarkMode ? "#1a1a1a" : "white",
+          filter: isDarkMode ? "invert(1) hue-rotate(180deg)" : "none",
+        }}
       >
         <div className="text-center p-4 text-red-500">
           Your browser does not support PDF viewing. Please download the file to
