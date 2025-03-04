@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { Upload, FileText } from "lucide-react";
 
 interface PdfUploaderProps {
